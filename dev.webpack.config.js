@@ -7,7 +7,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
 
 const HOST = '127.0.0.1'
-const PORT = process.env.PORT && Number(process.env.PORT)
+const PORT = 12310
 
 const devWebpackConfig = merge(baseWebpackConfig, {
   // cheap-module-eval-source-map is faster for development
@@ -23,7 +23,7 @@ const devWebpackConfig = merge(baseWebpackConfig, {
     contentBase: false,
     compress: true,
     host: HOST,
-    port: 12306,
+    port: PORT,
     open: true,    // 启动完成自动打开页面
     overlay: true, // 报错显示
     publicPath: '/',
@@ -45,7 +45,7 @@ const devWebpackConfig = merge(baseWebpackConfig, {
     }),
     new FriendlyErrorsPlugin({
       compilationSuccessInfo: {
-        messages: [`Your application is running here: http://${HOST}:12306`],
+        messages: [`Your application is running here: http://${HOST}:${PORT}`],
       },
       onErrors: undefined
     })

@@ -1,6 +1,6 @@
 // module.exports={
 //   //入口文件的配置项
-//   entry:{},
+//  entry:{},
 //   //出口文件的配置项
 //   output:{},
 //   //模块：例如解读CSS,图片如何转换，压缩
@@ -30,7 +30,7 @@ module.exports = {
     publicPath: '/'
   },
   resolve: {
-    extensions: [' ', '.js', '.json'], // 忽略后缀名
+    extensions: [' ', '.js', '.json', '.jsx'], // 忽略后缀名
     alias: {
       '@': resolve('src') // 设置别名
     }
@@ -38,9 +38,9 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.js$/,
-        loader: 'babel-loader',
-        include: [resolve('src')]
+        test: /\.jsx?$/,
+        loader: ['babel-loader'],
+        exclude: /node_modules/
       },
       // {
       //   test: /\.css$/,
@@ -63,10 +63,27 @@ module.exports = {
       //   ]
       // },
       {
-        test: /\.css$/,
+        test:  /\.(css|less)/,
         use: ExtractTextPlugin.extract({
           fallback: 'style-loader',
-          use: 'css-loader'
+          use: [
+            {
+              loader: 'css-loader',
+              options: {
+                // root: __dirname,
+                url: true,
+                import: false,
+                modules: false,
+                minimize: true,
+                sourceMap: true,
+                camelCase: false,
+                importLoaders: 2 // 感觉没什么用
+              }
+            },
+            {
+              loader: 'less-loader'
+            }
+          ]
         })
       }
     ]
