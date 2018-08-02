@@ -13,8 +13,9 @@
 
 
 const path = require('path')    // 配置资源路径
+const ExtractTextPlugin = require('extract-text-webpack-plugin') // css js分离
 
-function resolve (dir) {
+function resolve(dir) {
   return path.join(__dirname, './', dir)
 }
 
@@ -40,6 +41,33 @@ module.exports = {
         test: /\.js$/,
         loader: 'babel-loader',
         include: [resolve('src')]
+      },
+      // {
+      //   test: /\.css$/,
+      //   use: [
+      //     'style-loader',
+      //     {
+      //       loader: 'css-loader',
+      //       options: {
+      //         root: __dirname + '/src/',
+      //         url: true,
+      //         import: false,
+      //         modules: false,
+      //         minimize: true,
+      //         sourceMap: true,
+      //         camelCase: false,
+      //         // importLoaders: 0 // 感觉没什么用
+      //       }
+      //     },
+      //     'postcss-loader'
+      //   ]
+      // },
+      {
+        test: /\.css$/,
+        use: ExtractTextPlugin.extract({
+          fallback: 'style-loader',
+          use: 'css-loader'
+        })
       }
     ]
   }

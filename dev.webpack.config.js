@@ -4,6 +4,7 @@ const webpack = require('webpack')
 const FriendlyErrorsPlugin = require('friendly-errors-webpack-plugin')
 const baseWebpackConfig = require('./base.webpack.config')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
+const ExtractTextPlugin = require('extract-text-webpack-plugin')
 
 const HOST = '127.0.0.1'
 const PORT = process.env.PORT && Number(process.env.PORT)
@@ -36,6 +37,7 @@ const devWebpackConfig = merge(baseWebpackConfig, {
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NamedModulesPlugin(), // HMR shows correct file names in console on update.
     new webpack.NoEmitOnErrorsPlugin(),
+    new ExtractTextPlugin('app.css'),
     new HtmlWebpackPlugin({
       filename: 'index.html',
       template: 'index.html',
