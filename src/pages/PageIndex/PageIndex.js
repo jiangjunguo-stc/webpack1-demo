@@ -8,7 +8,7 @@ class PageIndex extends React.Component {
 
   render() {
     return (
-      <div className="demo">HEllo world</div>
+      <div className="demo">HEllO world</div>
     )
   }
 }

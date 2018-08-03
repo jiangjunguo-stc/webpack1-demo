@@ -5,9 +5,28 @@ const FriendlyErrorsPlugin = require('friendly-errors-webpack-plugin')
 const baseWebpackConfig = require('./base.webpack.config')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
+const HelloworldPlugin = require('./config/helloworldPlugin')
 
 const HOST = '127.0.0.1'
-const PORT = 12310
+const PORT = 12301
+
+const createNotifierCallback = () => {
+  // const notifier = require('node-notifier')
+
+  return (severity, errors) => {
+    if (severity !== 'error') return
+
+    const error = errors[0]
+    const filename = error.file && error.file.split('!').pop()
+    console.log(filename)
+    // notifier.notify({
+    //   title: packageConfig.name,
+    //   message: severity + ': ' + error.name,
+    //   subtitle: filename || '',
+    //   icon: path.join(__dirname, 'logo.png')
+    // })
+  }
+}
 
 const devWebpackConfig = merge(baseWebpackConfig, {
   // cheap-module-eval-source-map is faster for development
@@ -37,6 +56,9 @@ const devWebpackConfig = merge(baseWebpackConfig, {
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NamedModulesPlugin(), // HMR shows correct file names in console on update.
     new webpack.NoEmitOnErrorsPlugin(),
+    new HelloworldPlugin({
+      path: ['//g.alicdn.com/platform/c/??babel-polyfill/6.26.0/dist/polyfill.min.min.js,fastclick/1.0.6/lib/fastclick.min.js']
+    }),
     new ExtractTextPlugin('app.css'),
     new HtmlWebpackPlugin({
       filename: 'index.html',
@@ -47,7 +69,7 @@ const devWebpackConfig = merge(baseWebpackConfig, {
       compilationSuccessInfo: {
         messages: [`Your application is running here: http://${HOST}:${PORT}`],
       },
-      onErrors: undefined
+      onErrors: createNotifierCallback()
     })
   ]
 })

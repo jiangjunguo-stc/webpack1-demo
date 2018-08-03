@@ -22,6 +22,7 @@ function resolve(dir) {
 module.exports = {
   context: path.resolve(__dirname, './'),  // 主路径
   entry: {
+    react: ["react"],
     app: './src/main.js'  // 支持多入口, 还可以支持动态配置
   },
   output: {
@@ -64,6 +65,7 @@ module.exports = {
       // },
       {
         test:  /\.(css|less)/,
+        exclude: /node_modules/,
         use: ExtractTextPlugin.extract({
           fallback: 'style-loader',
           use: [
