@@ -38,6 +38,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "echarts": "^4.1.0",
     "less": "^3.8.0",
     "less-loader": "^4.1.0",
     "react": "^16.4.2",
