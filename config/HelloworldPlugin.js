@@ -1,4 +1,4 @@
-function HelloworldPlugin (options) {
+function HelloworldPlugin(options) {
   this.options = options;
 }
 

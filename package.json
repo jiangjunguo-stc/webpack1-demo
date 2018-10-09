@@ -32,19 +32,22 @@
     "style-loader": "^0.21.0",
     "webpack": "^3.6.0",
     "webpack-bundle-analyzer": "^2.9.0",
-    "webpack-dev-server": "^2.9.1",
+    "webpack-dev-server": "^2.11.3",
     "webpack-merge": "^4.1.4"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "dva": "^2.3.0",
     "echarts": "^4.1.0",
-    "less": "^3.8.0",
+    "less": "^3.8.1",
     "less-loader": "^4.1.0",
-    "react": "^16.4.2",
-    "react-dom": "^16.4.2",
-    "react-hot-loader": "^4.3.4",
+    "react": "^16.5.2",
+    "react-dom": "^16.5.2",
+    "react-hot-loader": "^4.3.11",
     "react-router": "^4.3.1",
-    "react-router-dom": "^4.3.1"
+    "react-router-dom": "^4.3.1",
+    "redux": "^4.0.0",
+    "uxcore": "^0.21.29"
   }
 }
